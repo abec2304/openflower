@@ -1,0 +1,60 @@
+# TODO: find out if Fernflower actually needs EnclosingMethodAttribute
+# ^ probably not...
+
+# EM = enclosing method
+# format: innerclass outerclass (methodname methoddesc)
+# IC = inner class
+# format: innerclass outerclass innername (private|static|privatestatic)
+
+# TODO: check methods actually exist...
+# TODO: check we didn't miss access flag changes
+
+# NOTE: FlattenStatementsHelper requires replaceAccessExprent fix
+# NOTE: some classes require getQualifiedNewInstance fix
+# NOTE: some classes were changed to static to avoid errors in FF's decompilation
+
+EM de/fernflower/main/ClassReference14Processor$1 de/fernflower/main/ClassReference14Processor processClassRec (Lde/fernflower/main/ClassesProcessor$ClassNode;Ljava/util/HashMap;Ljava/util/HashSet;)V
+IC de/fernflower/main/ClassesProcessor$ClassNode de/fernflower/main/ClassesProcessor ClassNode static
+
+EM de/fernflower/main/collectors/ImportCollector$1 de/fernflower/main/collectors/ImportCollector writeImports (Ljava/io/BufferedWriter;)V
+
+EM de/fernflower/main/extern/IFernflowerLogger$1 de/fernflower/main/extern/IFernflowerLogger
+
+EM de/fernflower/main/rels/NestedClassProcessor$1 de/fernflower/main/rels/NestedClassProcessor computeLocalVaarsAndDefinitions (Lde/fernflower/main/ClassesProcessor$ClassNode;)V
+EM de/fernflower/main/rels/NestedClassProcessor$2 de/fernflower/main/rels/NestedClassProcessor insertLocalVars (Lde/fernflower/main/ClassesProcessor$ClassNode;Lde/fernflower/main/ClassesProcessor$ClassNode;)V
+IC de/fernflower/main/rels/NestedClassProcessor$VarFieldPair de/fernflower/main/rels/NestedClassProcessor VarFieldPair privatestatic
+
+EM de/fernflower/modules/decompiler/DomHelper$1 de/fernflower/modules/decompiler/DomHelper calcPostDominators (Lde/fernflower/modules/decompiler/stats/Statement;)Lde/fernflower/util/VBStyleCollection;
+EM de/fernflower/modules/decompiler/FinallyProcessor$1BlockStackEntry de/fernflower/modules/decompiler/FinallyProcessor BlockStackEntry compareSubgraphsEx (Lde/fernflower/code/cfg/ControlFlowGraph;Lde/fernflower/code/cfg/BasicBlock;Ljava/util/HashSet;Lde/fernflower/code/cfg/BasicBlock;ILjava/util/HashMap;Z)[Ljava/lang/Object;
+IC de/fernflower/modules/decompiler/IfHelper$IfNode de/fernflower/modules/decompiler/IfHelper IfNode privatestatic
+
+EM de/fernflower/modules/decompiler/decompose/FastExtendedPostdominanceHelper$1 de/fernflower/modules/decompiler/decompose/FastExtendedPostdominanceHelper removeErroneousNodes ()V
+EM de/fernflower/modules/decompiler/decompose/FastExtendedPostdominanceHelper$2 de/fernflower/modules/decompiler/decompose/FastExtendedPostdominanceHelper calcDefaultReachableSets ()V
+EM de/fernflower/modules/decompiler/decompose/FastExtendedPostdominanceHelper$3 de/fernflower/modules/decompiler/decompose/FastExtendedPostdominanceHelper calcReachabilitySuppPoints (I)V
+IC de/fernflower/modules/decompiler/decompose/FastExtendedPostdominanceHelper$IReachabilityAction de/fernflower/modules/decompiler/decompose/FastExtendedPostdominanceHelper IReachabilityAction privatestatic
+
+EM de/fernflower/modules/decompiler/deobfuscator/ExceptionDeobfuscator$1 de/fernflower/modules/decompiler/deobfuscator/ExceptionDeobfuscator removeCircularRanges (Lde/fernflower/code/cfg/ControlFlowGraph;)V
+EM de/fernflower/modules/decompiler/deobfuscator/IrreducibleCFGDeobfuscator$1Node de/fernflower/modules/decompiler/deobfuscator/IrreducibleCFGDeobfuscator Node isStatementIrreducible (Lde/fernflower/modules/decompiler/stats/Statement;)Z
+
+IC de/fernflower/modules/decompiler/sforms/DirectGraph$ExprentIterator de/fernflower/modules/decompiler/sforms/DirectGraph ExprentIterator static
+EM de/fernflower/modules/decompiler/sforms/FlattenStatementsHelper$1StatementStackEntry de/fernflower/modules/decompiler/sforms/FlattenStatementsHelper StatementStackEntry flattenStatement ()V
+IC de/fernflower/modules/decompiler/sforms/FlattenStatementsHelper$Edge de/fernflower/modules/decompiler/sforms/FlattenStatementsHelper Edge privatestatic
+IC de/fernflower/modules/decompiler/sforms/FlattenStatementsHelper$FinallyPathWrapper de/fernflower/modules/decompiler/sforms/FlattenStatementsHelper FinallyPathWrapper static
+IC de/fernflower/modules/decompiler/sforms/FlattenStatementsHelper$StackEntry de/fernflower/modules/decompiler/sforms/FlattenStatementsHelper StackEntry privatestatic
+
+IC de/fernflower/modules/decompiler/vars/CheckTypesResult$ExprentTypePair de/fernflower/modules/decompiler/vars/CheckTypesResult ExprentTypePair static
+EM de/fernflower/modules/decompiler/vars/VarProcessor$1 de/fernflower/modules/decompiler/vars/VarProcessor setDebugVarNames (Ljava/util/HashMap;)V
+EM de/fernflower/modules/decompiler/vars/VarTypeProcessor$1 de/fernflower/modules/decompiler/vars/VarTypeProcessor resetExprentTypes (Lde/fernflower/modules/decompiler/sforms/DirectGraph;)V
+EM de/fernflower/modules/decompiler/vars/VarTypeProcessor$2 de/fernflower/modules/decompiler/vars/VarTypeProcessor processVarTypes (Lde/fernflower/modules/decompiler/sforms/DirectGraph;)Z
+EM de/fernflower/modules/decompiler/vars/VarVersionsGraph$1 de/fernflower/modules/decompiler/vars/VarVersionsGraph initDominators ()V
+EM de/fernflower/modules/decompiler/vars/VarVersionsProcessor$1 de/fernflower/modules/decompiler/vars/VarVersionsProcessor mergePhiVersions (Lde/fernflower/modules/decompiler/sforms/SSAConstructorSparseEx;Lde/fernflower/modules/decompiler/sforms/DirectGraph;)V
+EM de/fernflower/modules/decompiler/vars/VarVersionsProcessor$2 de/fernflower/modules/decompiler/vars/VarVersionsProcessor simpleMerge (Lde/fernflower/modules/decompiler/vars/VarTypeProcessor;Lde/fernflower/modules/decompiler/sforms/DirectGraph;)
+EM de/fernflower/modules/decompiler/vars/VarVersionsProcessor$3 de/fernflower/modules/decompiler/vars/VarVersionsProcessor setNewVarIndices (Lde/fernflower/modules/decompiler/vars/VarTypeProcessor;Lde/fernflower/modules/decompiler/sforms/DirectGraph;)V
+
+IC de/fernflower/struct/lazy/LazyLoader$Link de/fernflower/struct/lazy/LazyLoader Link static
+
+IC de/fernflower/util/FastFixedSetFactory$FastFixedSet de/fernflower/util/FastFixedSetFactory FastFixedSet static
+IC de/fernflower/util/FastFixedSetFactory$FastFixedSetIterator de/fernflower/util/FastFixedSetFactory FastFixedSetIterator static
+IC de/fernflower/util/FastSparseSetFactory$FastSparseSet de/fernflower/util/FastSparseSetFactory FastSparseSet static
+IC de/fernflower/util/FastSparseSetFactory$FastSparseSetIterator de/fernflower/util/FastSparseSetFactory FastSparseSetIterator static
+EM de/fernflower/util/SFormsFastMapDirect$1 de/fernflower/util/SFormsFastMapDirect entryList ()L/java/util/List;

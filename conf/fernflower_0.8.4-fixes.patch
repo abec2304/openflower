@@ -1,0 +1,491 @@
+# For Fernflower 0.8.4
+# -Patch by abec2304
+# 
+# print stack traces
+# de/fernflower/main/decompiler/helper/PrintStreamLogger
++++ at
+@@ REPLACE @@ getShowStacktrace ()Z
++0: iconst_1
+# fix missing casts
+# de/fernflower/modules/decompiler/exps/AssignmentExprent
++++ aC
+@@ REPLACE @@ c ()LQ;
++3: 39
+# fixes case ordering
+# de/fernflower/modules/decompiler/stats/SwitchStatement
++++ R
+@@ REPLACE @@ e ()V
++638: nop
++639: nop
++640: nop
++641: iconst_0
+@@ INSERT @@ e ()V
++646: iload_1
++647: iload
++648: 6
++649: iconst_1
++650: isub
++651: if_icmpne
++652: 0
++653: 6
++654: goto
++655: 0
++656: 0
+@@ INSERT @@ e ()V
++702: iload_1
++703: iload
++704: 6
++705: if_icmpgt
++706: 0
++707: 0
+@@ INSERT @@ e ()V
++711: iconst_1
++712: iadd
+@@ INSERT @@ e ()V
++723: iconst_1
++724: iadd
+@@ INSERT @@ e ()V
++731: goto
++732: 0
++733: 25
++734: aload_3
++735: iload
++736: 6
++737: invokeinterface
++738: 0
++739: 116
++740: 2
++741: 0
++742: pop
++743: aload
++744: 4
++745: iload
++746: 6
++747: invokeinterface
++748: 0
++749: 116
++750: 2
++751: 0
++752: pop
+@@ REPLACE @@ e ()V
++656: 105
+@@ REPLACE @@ e ()V
++707: 29
+# fixes missing while(true)
+# de/fernflower/modules/decompiler/DomHelper
++++ aX
+@@ REPLACE @@ a (LcH;)LS;
++62: nop
+@@ INSERT @@ a (LcH;)LS;
++67: astore
++68: 5
++69: aload_1
++70: aload
++71: 5
+@@ REPLACE @@ a (LcH;)LS;
++105: if_icmpgt
+@@ INSERT @@ a (LcH;)LS;
++108: aload
++109: 5
++110: aload
++111: 5
++112: invokevirtual
++113: Methodref .18 g (LbS;)Z #1
++114: Methodref .18 g (LbS;)Z #2
++115: ifeq
++116: 0
++117: 18
+@@ REPLACE @@ a (LcH;)LS;
++107: 13
+# avoid this assignment
+# de/fernflower/modules/decompiler/vars/VarVersionsProcessor
++++ d
+@@ ADDFIELD @@
++isMethodStatic Z 10
+@@ INSERT @@ a (LS;)V
++9: aload_0
++10: pop
++11: aload_2
++12: invokevirtual
++13: Methodref .11 f ()I #1
++14: Methodref .11 f ()I #2
++15: bipush
++16: 8
++17: iand
++18: ifeq
++19: 0
++20: 7
++21: iconst_1
++22: goto
++23: 0
++24: 4
++25: iconst_0
++26: putstatic
++27: Fieldref .this isMethodStatic Z #1
++28: Fieldref .this isMethodStatic Z #2
+@@ INSERT @@ a (Lct;Lq;)V
++235: aload
++236: 9
++237: getfield
++238: 0
++239: 39
++240: ifne
++241: 0
++242: 21
++243: aload
++244: 9
++245: getfield
++246: 0
++247: 40
++248: iconst_1
++249: if_icmpne
++250: 0
++251: 12
++252: getstatic
++253: Fieldref .this isMethodStatic Z #1
++254: Fieldref .this isMethodStatic Z #2
++255: ifne
++256: 0
++257: 6
++258: goto
++259: 1
++260: 13
+# fixes broken instantiation
+# de/fernflower/modules/decompiler/SimplifyExprentsHelper
++++ aV
+@@ REPLACE @@ a (Ljava/util/List;)Z
++489: nop
++490: nop
++491: nop
++492: nop
++493: nop
++494: nop
++495: nop
++496: nop
++497: nop
++498: nop
+@@ INSERT @@ a (Ljava/util/List;)Z
++512: aload
++513: 16
++514: invokeinterface
++515: 0
++516: 172
++517: 1
++518: 0
++519: ifeq
++520: 0
++521: 44
+# modifies class to decompile correctly
+# de/fernflower/struct/StructMethod
++++ bn
+@@ ADDFIELD @@
++offset I 10
+@@ REPLACE @@ a (Lcv;ILbJ;)LcP;
++16: nop
++17: nop
+# below, first nop is so we don't have to worry about re-alignment
+@@ INSERT @@ a (Lcv;ILbJ;)LcP;
++18: nop
++19: putstatic
++20: Fieldref .this offset I #1
++21: Fieldref .this offset I #2
+@@ REPLACE @@ a (Lcv;ILbJ;)LcP;
++1538: nop
++1539: nop
+@@ INSERT @@ a (Lcv;ILbJ;)LcP;
++1540: getstatic
++1541: Fieldref .this offset I #1
++1542: Fieldref .this offset I #2
+# fix issue with output file
++++ de/fernflower/main/decompiler/ConsoleDecompiler
+@@ INSERT @@ main ([Ljava/lang/String;)V
++42: iconst_1
++43: isub
+# fix super field assignment missing in constructor
+# de/fernflower/main/InitializerProcessor
++++ bO
+@@ INSERT @@ a (Lv;)V
++595: aload_2
++596: invokevirtual
++597: Methodref .15 f ()LcE; #1
++598: Methodref .15 f ()LcE; #2
++599: aload
++600: 10
++601: invokevirtual
++602: 0
++603: 63
++604: ifne
++605: 0
++606: 6
++607: goto
++608: 0
++609: -112
+# fix for excessive casting
+# de/fernflower/modules/decompiler/ExprProcessor
++++ bA
+@@ INSERT @@ a (LaJ;LQ;Ljava/lang/StringBuilder;IZZ)Z
++54: ifeq
++55: 0
++56: 16
++57: aload_1
++58: aload
++59: 7
++60: invokevirtual
++61: 0
++62: 147
++63: ifne
++64: 0
++65: 7
++66: iconst_1
++67: goto
++68: 0
++69: 4
++70: iconst_0
+# padding
++71: nop
++72: nop
++73: nop
+# fix for inner class references - part 1
+# de/fernflower/main/rels/NestedClassProcessor$2
++++ cm
+@@ INSERT @@ b (LaJ;)LaJ;
++105: invokevirtual
++106: 0
++107: 41
++108: aload_2
+@@ INSERT @@ b (LaJ;)LaJ;
++119: invokestatic
++120: 0
++121: 49
+@@ INSERT @@ b (LaJ;)LaJ;
+# skip code instead of nopping
++126: goto
++127: 0
++128: 23
+@@ INSERT @@ a (LaJ;)I
++56: aload_0
++57: getfield
++58: 0
++59: 35
++60: getfield
++61: 0
++62: 29
++63: getfield
++64: 0
++65: 32
+@@ INSERT @@ a (LaJ;)I
++80: invokestatic
++81: 0
++82: 49
+# STACK is used to recalculate stack size
+@@ STACK @@ a (LaJ;)I
+# fix for inner class references - part 2
+# de/fernflower/main/rels/NestedClassProcessor
++++ C
+@@ ADDFIELD @@
++clnode LaK; 10
++enclosingMethod LcW; 10
+@@ INSERT @@ d (LaK;LaK;)V
++345: putstatic
++346: Fieldref .this clnode LaK; #1
++347: Fieldref .this clnode LaK; #2
++348: getstatic
++349: Fieldref .this clnode LaK; #1
++350: Fieldref .this clnode LaK; #2
++351: ifnull
++352: 0
++353: 0
++354: getstatic
++355: Fieldref .this clnode LaK; #1
++356: Fieldref .this clnode LaK; #2
+@@ INSERT @@ d (LaK;LaK;)V
++405: getstatic
++406: Fieldref .this clnode LaK; #1
++407: Fieldref .this clnode LaK; #2
++408: getfield
++409: 0
++410: 74
++411: getfield
++412: 0
++413: 83
+@@ INSERT @@ d (LaK;LaK;)V
++424: invokestatic
++425: 0
++426: -99
+@@ REPLACE @@ d (LaK;LaK;)V
+# because we had to nop a lot of bytes
++433: goto
++434: 0
++435: 49
++436: nop
+@@ REPLACE @@ d (LaK;LaK;)V
++496: nop
+@@ INSERT @@ d (LaK;LaK;)V
++497: getstatic
++498: Fieldref .this clnode LaK; #1
++499: Fieldref .this clnode LaK; #2
++500: getfield
++501: 0
++502: 80
++503: getfield
++504: 0
++505: 75
++506: invokevirtual
++507: 0
++508: -48
++509: getstatic
++510: Fieldref .this clnode LaK; #1
++511: Fieldref .this clnode LaK; #2
++512: getfield
++513: 0
++514: 76
++515: invokevirtual
++516: 0
++517: -102
++518: checkcast
++519: 0
++520: 42
++521: putstatic
++522: Fieldref .this enclosingMethod LcW; #1
++523: Fieldref .this enclosingMethod LcW; #2
++524: getstatic
++525: Fieldref .this enclosingMethod LcW; #1
++526: Fieldref .this enclosingMethod LcW; #2
++527: ifnull
++528: 0
++529: 0
++530: getstatic
++531: Fieldref .this enclosingMethod LcW; #1
++532: Fieldref .this enclosingMethod LcW; #2
+@@ REPLACE @@ d (LaK;LaK;)V
++551: nop
+@@ INSERT @@ d (LaK;LaK;)V
++552: getstatic
++553: Fieldref .this enclosingMethod LcW; #1
++554: Fieldref .this enclosingMethod LcW; #2
+@@ REPLACE @@ d (LaK;LaK;)V
++573: nop
+@@ INSERT @@ d (LaK;LaK;)V
++574: getstatic
++575: Fieldref .this enclosingMethod LcW; #1
++576: Fieldref .this enclosingMethod LcW; #2
+@@ REPLACE @@ d (LaK;LaK;)V
++620: nop
+@@ INSERT @@ d (LaK;LaK;)V
++621: getstatic
++622: Fieldref .this clnode LaK; #1
++623: Fieldref .this clnode LaK; #2
++624: getfield
++625: 0
++626: 80
+@@ REPLACE @@ d (LaK;LaK;)V
++644: 0
+@@ INSERT @@ d (LaK;LaK;)V
++645: getstatic
++646: Fieldref .this clnode LaK; #1
++647: Fieldref .this clnode LaK; #2
++648: getfield
++649: 0
++650: 80
+@@ REPLACE @@ d (LaK;LaK;)V
++679: nop
+@@ INSERT @@ d (LaK;LaK;)V
++680: getstatic
++681: Fieldref .this clnode LaK; #1
++682: Fieldref .this clnode LaK; #2
++683: getfield
++684: 0
++685: 80
+@@ INSERT @@ d (LaK;LaK;)V
++716: getstatic
++717: Fieldref .this clnode LaK; #1
++718: Fieldref .this clnode LaK; #2
++719: aload_2
++720: if_acmpne
++721: 0
++722: 49
++723: aload_2
++724: getfield
++725: 0
++726: 74
++727: invokevirtual
++728: 0
++729: -115
++730: aload
++731: 9
++732: invokeinterface
++733: 0
++734: -33
++735: 1
++736: 0
++737: invokevirtual
++738: 0
++739: -102
++740: checkcast
++741: 0
++742: 36
++743: astore
++744: 15
++745: aload_2
++746: getfield
++747: 0
++748: 75
++749: invokevirtual
++750: 0
++751: -47
++752: aload
++753: 15
++754: invokevirtual
++755: 0
++756: -103
++757: aload
++758: 15
++759: invokevirtual
++760: 0
++761: -104
++762: invokestatic
++763: 0
++764: -99
++765: invokevirtual
++766: 0
++767: -63
++768: pop
+@@ INSERT @@ d (LaK;LaK;)V
++779: getstatic
++780: Fieldref .this clnode LaK; #1
++781: Fieldref .this clnode LaK; #2
++782: getfield
++783: 0
++784: 80
++785: putstatic
++786: Fieldref .this clnode LaK; #1
++787: Fieldref .this clnode LaK; #2
++788: goto
++789: -2
++790: 72
+@@ REPLACE @@ d (LaK;LaK;)V
+# fix jump targets
++352: 1
++353: -72
++528: 0
++529: 66
++371: 1
++372: -113
+# attempt to stop illegal 'qualified' new references
+# NOTE: this is actually too harsh, breaks Fernkiller test
+# de/fernflower/modules/decompiler/exps/NewExprent
++++ aY
+@@ REPLACE @@ a (Ljava/lang/String;Ljava/util/List;I)Ljava/lang/String;
++55: iconst_1
++115: ifeq
++118: iconst_0
+@@ INSERT @@ a (Ljava/lang/String;Ljava/util/List;I)Ljava/lang/String;
++106: aload_3
++107: ifnull
++108: 0
++109: 15
+# disable "bto" by default as it causes decompilation issues
+# de/fernflower/main/DecompilerContext
++++ aD
+@@ REPLACE @@ a (Ljava/util/HashMap;)V
++129: 1

@@ -1,0 +1,10 @@
+# access changes!
+M de/fernflower/code/JumpInstruction.clone ()Lde/fernflower/code/Instruction; -bridge
+M de/fernflower/code/SimpleInstructionSequence.clone ()Lde/fernflower/code/InstructionSequence; -bridge
+M de/fernflower/code/SwitchInstruction.clone ()Lde/fernflower/code/Instruction; -bridge
+M de/fernflower/main/collectors/ImportCollector$1.compare (Ljava/lang/Object;Ljava/lang/Object;)I -bridge
+M de/fernflower/modules/decompiler/DomHelper$1.compare (Ljava/lang/Object;Ljava/lang/Object;)I -bridge
+M de/fernflower/modules/decompiler/vars/VarProcessor$1.compare (Ljava/lang/Object;Ljava/lang/Object;)I -bridge
+M de/fernflower/util/SFormsFastMapDirect$1.getValue ()Ljava/lang/Object; -bridge
+M de/fernflower/util/SFormsFastMapDirect$1.getKey ()Ljava/lang/Object; -bridge
+M de/fernflower/util/SFormsFastMapDirect$1.setValue (Ljava/lang/Object;)Ljava/lang/Object; -bridge
